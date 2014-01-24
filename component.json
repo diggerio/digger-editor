@@ -7,8 +7,7 @@
   "dependencies": {
     "diggerio/digger-for-angular": "*",
     "diggerio/digger-tree-for-angular": "*",
-    "diggerio/digger-viewer-for-angular": "*",
-    "diggerio/digger-form-for-angular": "*"
+    "diggerio/digger-viewer-for-angular": "*"
   },
   "development": {},
   "license": "MIT",

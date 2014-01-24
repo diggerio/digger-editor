@@ -1,30 +1,32 @@
 module.exports = 'digger.editor';
 angular
 	.module('digger.editor', [
-		require('digger-for-angular')
+		require('digger-for-angular'),
+    require('digger-tree-for-angular'),
+    require('digger-viewer-for-angular')
 	])
 
-  .directive('diggerEditor', function(){
+  .directive('diggerEditor', function($safeApply){
 
 
     //field.required && showvalidate && containerForm[field.name].$invalid
     return {
       restrict:'EA',
       scope:{
-        container:'=',
-        readonly:'@'
+        warehouse_root:'=container',
+        settings:'='
       },
       replace:true,
       template:require('./template'),
       controller:function($scope){
 
         $scope.default_child_selector = '>*:sort(name):limit(0,100)';
-    		$scope.viewersettings = {
+    		var basesettings = {
     			showjson:true,
           showdigger:true,
           container_url:true,
           container_branch:true,
-          readonly:true,
+          readonly:false,
           showup:true,
           showselector:true,
           child_selector:$scope.default_child_selector,
@@ -57,7 +59,22 @@ angular
           }
         }
 
+        $scope.viewersettings = {};
+
+        function inject_settings(obj){
+          Object.keys(obj || {}).forEach(function(key){
+            $scope.viewersettings[key] = obj[key];      
+          })
+        }
+
+        inject_settings(basesettings);
+        inject_settings($scope.settings);
+
         function growl(message, type){
+
+          $scope.$emit('growl', message, type || 'info');
+
+          /*
           type = type || 'info';
           $.bootstrapGrowl(message, {
             ele: 'body', // which element to append to
@@ -69,6 +86,7 @@ angular
             allow_dismiss: true,
             stackup_spacing: 10 // spacing between consecutively stacked growls.
           });
+          */
         }
 
 
@@ -104,9 +122,7 @@ angular
           }
     			container($scope.viewersettings.child_selector).ship(function(children){
     				$safeApply($scope, function(){
-    					container.models[0]._children = children.filter(function(c){
-                return c.tag()!='blueprint';
-              }).models;
+    					container.models[0]._children = children.models;
     					done && done(null, children);
     				})
     			})
@@ -147,34 +163,6 @@ angular
           
         }
 
-    		/*
-    		
-    			called once we have confirmed read access
-    			
-    		
-
-
-        function load_initial_folders(){
-
-          if($scope.initial_folders && $scope.initial_folders.length>=0){
-            var name = $scope.initial_folders.shift();
-            
-            var to_load = $scope.viewer_container.find('>[name=' + name + ']');
-
-            if(to_load.isEmpty()){
-              return;
-            }
-
-            activate_container(to_load, function(){
-              $scope.$broadcast('tree:setselected', to_load.get(0));
-              load_initial_folders();
-            })
-
-            
-          }
-          
-        }*/
-
     		function initialize(){
     			activate_container($scope.warehouse_root, function(){
     				$scope.tree_root = $scope.warehouse_root;
@@ -192,7 +180,6 @@ angular
 
         // they clicked the root from the breadcrumbs
         $scope.openroot = function(){
-          $scope.tabmode = 'folders';
           activate_container($scope.tree_root);
           $scope.$broadcast('tree:setselected', $scope.tree_root.get(0));
         }
@@ -381,6 +368,8 @@ angular
             $scope.importmode = true;
           }
         })
+
+        initialize();
 
 
 
