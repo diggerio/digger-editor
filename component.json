@@ -6,9 +6,9 @@
   "keywords": [],
   "dependencies": {
     "diggerio/digger-for-angular": "*",
-    "diggerio/digger-tree-angular": "*",
-    "diggerio/digger-viewer-angular": "*",
-    "diggerio/digger-form-angular": "*"
+    "diggerio/digger-tree-for-angular": "*",
+    "diggerio/digger-viewer-for-angular": "*",
+    "diggerio/digger-form-for-angular": "*"
   },
   "development": {},
   "license": "MIT",

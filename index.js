@@ -10,11 +10,8 @@ angular
     return {
       restrict:'EA',
       scope:{
-        fields:'=',
         container:'=',
-        fieldclass:'@',
-        readonly:'@',
-        showedit:'='
+        readonly:'@'
       },
       replace:true,
       template:require('./template'),
@@ -58,10 +55,6 @@ angular
             return $scope.viewer_container.tag()=='_supplychain';
           }
         }
-       
-        
-
-        
 
         function growl(message, type){
           type = type || 'info';
