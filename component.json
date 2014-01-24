@@ -1,0 +1,23 @@
+{
+  "name": "digger-editor",
+  "repo": "diggerio/digger-editor",
+  "description": "Combo of tree, viewer and form for easy warehouse editing",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "diggerio/digger-for-angular": "*",
+    "diggerio/digger-tree-angular": "*",
+    "diggerio/digger-viewer-angular": "*",
+    "diggerio/digger-form-angular": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "styles": [
+    
+  ],
+  "scripts": [
+    "index.js",
+    "template.js"
+  ]
+}

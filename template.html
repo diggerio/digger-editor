@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-sm-12">
+
+    <div class="row">
+      <ul class="breadcrumb">
+
+        <li>
+          <a href="" ng-click="openroot()">{{ warehousename }}</a>
+        </li>
+
+        <li ng-repeat="ancestor in ancestors" ng-click="openancestor(ancestor)">
+          <a href="">{{ ancestor.title() }}</a>
+        </li>
+
+      </ul>
+    </div>
+
+    <!--
+      FOLDER VIEWER
+     -->
+    <div class="row">
+      
+      <div class="col-sm-3" style="border-right:1px solid #ccc;height:100%;">
+        <digger-tree iconfn="iconfn" filter="folder" container="tree_root" depth="10">
+        </digger-tree>
+      </div>
+      
+      <div class="col-sm-9" ng-hide="importmode">
+        <digger-viewer iconfn="iconfn" container="viewer_container" blueprint="viewer_blueprint" settings="viewersettings" />
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
