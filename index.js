@@ -1,3 +1,4 @@
+module.exports = 'digger.editor';
 angular
 	.module('digger.editor', [
 		require('digger-for-angular')
