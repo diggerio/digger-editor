@@ -40,7 +40,8 @@ angular
             class:'btn-primary'
           }],
           filterchildren:function(child){
-            return !system_tags[child.tag()];
+            //return !system_tags[child.tag()];
+            return true;
           },
           hidebuttonfn:function(button){
             if($scope.viewer_container && $scope.viewer_container.tag()=='_supplychain' && button.id=='delete'){
@@ -269,7 +270,6 @@ angular
             $scope.$broadcast('viewer:mode', 'children');
             $scope.add_parent_container = null;
             $scope.$broadcast('tree:setselected', parent.get(0));
-            update_meta();
           })
         })
 
@@ -316,7 +316,6 @@ angular
               $scope.$broadcast('viewer:mode', 'children');
               $scope.add_parent_container = null;
               $scope.$broadcast('tree:setselected', parent.get(0));
-              update_meta();
             })
             
           })
@@ -340,7 +339,6 @@ angular
                 $scope.viewer_blueprint = $scope.add_parent_blueprint;
                 $scope.$broadcast('viewer:mode', 'children');
                 $scope.add_parent_container = null;
-                update_meta();
               })
             })
           }
@@ -351,7 +349,6 @@ angular
                 if($scope.viewer_container.tag()=='folder'){
                   $scope.$broadcast('viewer:mode', 'children');
                 }
-                update_meta();
               })
               
             })
