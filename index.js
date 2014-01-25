@@ -34,11 +34,10 @@ angular
             id:'delete',
             title:'delete',
             class:'btn-warning'
-          },{
-            id:'import',
-            title:'import',
-            class:'btn-primary'
           }],
+          mapchildren:function(child){
+            return child;
+          },
           filterchildren:function(child){
             //return !system_tags[child.tag()];
             return true;
