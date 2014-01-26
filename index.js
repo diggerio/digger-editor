@@ -301,7 +301,7 @@ angular
         $scope.$on('viewer:remove', function(ev){
 
           $scope.viewer_container.remove().ship(function(){
-            growl($scope.viewer_container.title() + ' removed');
+            
             var parent = $scope.tree_root.find('=' + $scope.viewer_container.diggerparentid());
 
             if(!parent || parent.count()<=0){
@@ -315,6 +315,9 @@ angular
               $scope.$broadcast('viewer:mode', 'children');
               $scope.add_parent_container = null;
               $scope.$broadcast('tree:setselected', parent.get(0));
+              refresh_container(function(){
+                growl($scope.viewer_container.title() + ' removed');
+              })
             })
             
           })
