@@ -1,12 +1,18 @@
-<div class="row">
-  
-  <div class="col-sm-3" style="border-right:1px solid #ccc;height:100%;">
-    <digger-tree iconfn="iconfn" filter="folder" container="tree_root" depth="10">
-    </digger-tree>
-  </div>
-  
-  <div class="col-sm-9" ng-hide="importmode">
-    <digger-viewer iconfn="iconfn" container="viewer_container" blueprint="viewer_blueprint" settings="viewersettings" />
-  </div>
+<div>
+	<div class="row">
+		<h3>{{ viewer_container.title() }}</h3>
+	</div>
 
+	<div class="row">
+	  
+	  <div class="col-sm-3" style="border-right:1px solid #ccc;height:100%;">
+	    <digger-tree iconfn="iconfn" filter="folder" container="tree_root" depth="10">
+	    </digger-tree>
+	  </div>
+	  
+	  <div class="col-sm-9" ng-hide="importmode">
+	    <digger-viewer iconfn="iconfn" container="viewer_container" blueprint="viewer_blueprint" settings="viewersettings" />
+	  </div>
+
+	</div>
 </div>
